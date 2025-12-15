@@ -1,39 +1,79 @@
-# Edu-Matrix
-EduMatrix - Educational Program Management Platform
+# 🎓 EduMatrix
 
-Overview
-EduMatrix is a PHP-based web application designed to manage and display educational programs/courses organized by categories. It provides a user-friendly interface for browsing academic programs, with features like dynamic category listings, course details with pricing (including discounts), and responsive design using Tailwind CSS.
-Key Features
+![PHP](https://img.shields.io/badge/Backend-PHP_7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Design-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Maintained-success?style=for-the-badge)
 
-Category Listings: Displays all available program categories with images (programs.php).
-Course Listings: Shows courses within a selected category, including original and discounted prices (category_courses.php).
-Responsive Design: Uses Tailwind CSS for a mobile-friendly layout.
-Admin Management: Includes an admin interface for managing programs, categories, and coupons (not included in this upload but referenced in the code).
-Database Integration: Uses MySQL to store categories, programs, and related data.
+> **Overview:** EduMatrix is a dynamic **Educational Program Management Platform**. It simplifies the academic browsing experience by organizing courses into intuitive categories, displaying real-time pricing with smart discount logic, and ensuring a seamless experience across all devices.
 
-Prerequisites
+---
 
-PHP: Version 7.4 or higher.
-MySQL: For database management.
-Web Server: Apache (e.g., via XAMPP or WAMP).
-Tailwind CSS: Included via CDN in header.php (assumed).
+## 📑 Table of Contents
 
-Setup Instructions
+* [✨ Key Features](#-key-features)
+* [🛠️ Tech Stack](#-tech-stack)
+* [📸 Interface Preview](#-interface-preview)
+* [🗄️ Database Setup](#-database-setup)
+* [⚙️ Configuration](#-configuration)
+* [📂 File Structure](#-file-structure)
+* [🚀 Getting Started](#-getting-started)
+* [🤝 Contributing](#-contributing)
 
-Clone the Repository:
-git clone https://github.com/your-username/edumatrix.git
-cd edumatrix
+---
 
+## ✨ Key Features
 
-Set Up the Database:
+* **📚 Dynamic Course Catalog:** Organized listings of educational programs fetched directly from the database.
+* **💲 Smart Pricing System:** Automatically calculates and displays original vs. discounted prices (e.g., <del>৳1000</del> → <span style="color:green">৳800</span>).
+* **📱 Fully Responsive:** Built with **Tailwind CSS** to ensure a beautiful interface on mobile, tablet, and desktop.
+* **🖼️ Visual Learning:** Categories and courses support high-quality image uploads.
+* **⚡ Admin Architecture:** Backend structure ready for managing coupons, courses, and categories.
 
-Create a MySQL database named edumatrix.
-Import the following schema:CREATE TABLE categories (
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Backend** | `PHP (Native)` | Server-side logic and database communication. |
+| **Database** | `MySQL` | Relational storage for categories, programs, and pricing. |
+| **Frontend** | `Tailwind CSS` | Utility-first CSS framework for rapid UI development. |
+| **Server** | `Apache` | Web server (via XAMPP/WAMP). |
+
+---
+
+## 📸 Interface Preview
+
+> *Visualizing the platform's flow.*
+
+| **Program Categories** | **Course Details** |
+| :---: | :---: |
+| ![Category Page](uploads/category_placeholder.png) | ![Course Page](uploads/course_placeholder.png) |
+
+*(Note: Please upload screenshots to your `uploads/` folder and update these filenames)*
+
+---
+
+## 🗄️ Database Setup
+
+To run EduMatrix, you need to set up the database schema.
+
+**1. Create the Database**
+Open PHPMyAdmin and create a database named `edumatrix`.
+
+**2. Import the Schema**
+Run the following SQL commands in the SQL tab:
+
+```sql
+-- Create Categories Table
+CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     category VARCHAR(255) NOT NULL,
     image VARCHAR(255)
 );
 
+-- Create Programs Table
 CREATE TABLE programs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     class VARCHAR(255) NOT NULL,
@@ -44,94 +84,90 @@ CREATE TABLE programs (
     description TEXT
 );
 
-
-Add sample data:INSERT INTO categories (category, image) VALUES
+-- Insert Sample Data
+INSERT INTO categories (category, image) VALUES
 ('School Program - SSC 30', 'uploads/class_6.jpeg'),
 ('School Program - SSC 29', 'uploads/class_7.jpeg');
 
 INSERT INTO programs (class, category, price, discount_price, image, description) VALUES
 ('Math 101', 'School Program - SSC 30', 1000.00, 800.00, 'uploads/math101.jpg', 'Introduction to Algebra'),
 ('Math 102', 'School Program - SSC 30', 1200.00, NULL, NULL, 'Advanced Algebra');
+````
 
+-----
 
+## ⚙️ Configuration
 
+Ensure your application can connect to the database by editing `includes/db_connect.php`:
 
-Configure Database Connection:
-
-Update includes/db_connect.php with your database credentials:<?php
+```php
+<?php
 $host = 'localhost';
-$db = 'edumatrix';
-$user = 'root';
-$pass = '';
+$db   = 'edumatrix';
+$user = 'root';      // Default XAMPP username
+$pass = '';          // Default XAMPP password is empty
+
 $conn = new mysqli($host, $user, $pass, $db);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
+```
 
+-----
 
+## 📂 File Structure
 
+```text
+edumatrix/
+├── includes/
+│   ├── db_connect.php     # Database connection settings
+│   ├── header.php         # Navbar & Tailwind CSS CDN
+│   └── footer.php         # Footer & Scripts
+├── uploads/               # Stores dynamic images (courses/categories)
+├── programs.php           # Main landing page displaying categories
+├── category_courses.php   # Page displaying courses for a specific category
+└── README.md              # Project documentation
+```
 
-Set Up File Structure:
+-----
 
-Place the project files in your web server’s root directory (e.g., /Applications/XAMPP/xamppfiles/htdocs/edumatrix/).
-Ensure the uploads/ directory exists and contains placeholder images (e.g., class_6.jpeg).
+## 🚀 Getting Started
 
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/shafin027/EduMatriix.git](https://github.com/shafin027/EduMatriix.git)
+    ```
+2.  **Move Files:**
+    Place the project folder inside your server's root directory:
+      * **XAMPP:** `C:/xampp/htdocs/edumatrix`
+      * **MAMP:** `/Applications/MAMP/htdocs/edumatrix`
+3.  **Start Server:**
+    Launch Apache and MySQL via your control panel.
+4.  **Launch App:**
+    Visit `http://localhost/edumatrix/programs.php` in your browser.
 
-Start the Server:
+-----
 
-Start your web server (e.g., XAMPP).
-Access the project at http://localhost/edumatrix/programs.php.
+## 🤝 Contributing
 
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
+-----
 
-File Structure
+### 🛡️ Security Note
 
-programs.php: Displays all categories with links to their courses.
-category_courses.php: Shows courses for a specific category with pricing and discounts.
-includes/
-header.php: Contains the HTML head and navigation (assumed to include Tailwind CSS).
-db_connect.php: Database connection configuration.
-footer.php: HTML footer.
+This project utilizes **MySQLi** for database interactions. For a production environment, ensure that prepared statements are consistently used for all user inputs to prevent SQL injection, and implement robust input validation.
 
+-----
 
-uploads/: Directory for storing images (e.g., course and category images).
+\<div align="center"\>
 
-Usage
+**EduMatrix** | Developed by [Shafin027](https://github.com/shafin027)
 
-Browse Categories:
-
-Navigate to http://localhost/edumatrix/programs.php to view all program categories.
-Each category card links to category_courses.php?category=[category_name].
-
-
-View Courses:
-
-On category_courses.php, courses are displayed with their original price (strikethrough if discounted) and discounted price (if applicable) below it.
-Example: "মূল্য ৳1000 টাকা" followed by "৳800 টাকা" in green.
-Click a course to view details .
-
-
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Make your changes and commit (git commit -m "Add your feature").
-Push to your branch (git push origin feature/your-feature).
-Open a pull request.
-
-Notes
-
-Missing Files: Files like course_details.php, header.php, and footer.php are referenced but not included in this upload. Ensure they exist in your project.
-Styling: Assumes Tailwind CSS is included in header.php. If not, add it:<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-
-Security: Use prepared statements (already implemented) to prevent SQL injection. Consider adding input validation for production use.
-Future Improvements:
-Add pagination for large category or course lists.
-Implement user authentication for restricted access.
-
-
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Contact
-For questions or suggestions, feel free to open an issue or contact the repository owner.
+\</div\>
