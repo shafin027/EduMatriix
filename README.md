@@ -166,8 +166,5 @@ This project utilizes **MySQLi** for database interactions. For a production env
 
 -----
 
-\<div align="center"\>
-
 **EduMatrix** | Developed by [Shafin027](https://github.com/shafin027)
 
-\</div\>
