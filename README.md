@@ -165,6 +165,8 @@ edumatrix/
 This project utilizes **MySQLi** for database interactions. For a production environment, ensure that prepared statements are consistently used for all user inputs to prevent SQL injection, and implement robust input validation.
 
 -----
-
+<div align="center">
 **EduMatrix** | Developed by [Shafin027](https://github.com/shafin027)
+</div>
+
 
